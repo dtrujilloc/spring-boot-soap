@@ -21,7 +21,9 @@ este archivo debe crearse en la carpeta de resource para que sea identificada au
 
 Una vez creado el archivo XSD es necesario realizar una configuracion en build.gradle para crear una tarea que permita esta creacion automatica. Cuando se realice la configuracion 
 mostrada en el archivo build.gradle solo queda ejecutar el siguiente comando " ./gradlew generateSourcesXsd" donde generateSourceXsd es nombre de la tarea que se registro para la 
-creacion automatica del codigo a partir del archivo XSD.
+creacion automatica del codigo a partir del archivo XSD. Este comando se puede ejecutar en una consola sobre la ubicacion donde esta el proyecto. o desde la terminal del IDE que se 
+esta utilizando si este lo permite. Al ejecutar este comando, gradle se encargara de la ejecucion de la tarea especificada y creara automaticamente las clases especificadas en el 
+archivo XSD en la ubicacion que se configuro. Una vez creadas estas clases, ya se podran utilizar normalmente como se utiliza cualquier otra clase e java.
 
 Datos a tener en cuenta:
 - Notar que el archivo XSD tiene unos datos del namespace, notar que este name space se conforma a partir del nombre de los paquetes donde se desea crear las clases automaticamente.
