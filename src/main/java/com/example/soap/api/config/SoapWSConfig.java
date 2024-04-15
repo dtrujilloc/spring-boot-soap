@@ -32,12 +32,12 @@ public class SoapWSConfig {
     }
 
     // Configuracion a tener en cuenta para la creacion del WSDL
-    @Bean(name = "userWsdl")
+    @Bean(name = "userWsdl")    //nombre del bean con el que se va a crear el wsdl
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema xsdSchema) {
         DefaultWsdl11Definition defaultWsdl11Definition = new DefaultWsdl11Definition();
 
-        defaultWsdl11Definition.setPortTypeName("User");
-        defaultWsdl11Definition.setLocationUri("/ws");
+        defaultWsdl11Definition.setPortTypeName("User");    // nombre de la clase del endpoint sin la palabra "Endpoint"
+        defaultWsdl11Definition.setLocationUri("/ws");      // url por donde se va a consultar el archivo wsdl
         defaultWsdl11Definition.setTargetNamespace("http://www.example.com/soap/api/metadataxsd");
         defaultWsdl11Definition.setSchema(xsdSchema);
 

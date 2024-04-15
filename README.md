@@ -39,3 +39,17 @@ estos se crean las clases correspondientes, lo importante a resaltar, son las an
 esta anotaciones vienen de la dependencia de web services que seleccionamos al crear el proyecto. Una vez creado estas clases, nuestro proyecto 
 ya estaria completo para que pueda funcionar como servidor. Pero quien lo consuma, es decir el cliente, necesitara conocer el WSDL. y para esto 
 es necesario realizar una configuracion adicional para que se genere automaicamente a partir de todas las anotaciones que hemos utilizado.
+
+# 4. Configuracion WSDL
+Como se dijo en el paso anterior, es importante para los clientes, quienes hacen peticiones al servidor, conocer cual es el contrato de los 
+servicios web expuestos, es decir el contrato (WSLD). Recordemos que este archivo WSDL contiene toda la informacion descriptiva de los servicios 
+expuestos y los datos que se tienen que enviar y recibir en cada uno de ellos.
+
+Para esto es necesario crear una clase donde se realizaran todas las configuraciones necesarias, en este caso se creo un paquete de configuracion 
+y dentro de este paquete se creo la clase que se encargara de dicha configuracion.
+
+Una vez realizada dicha configuracion, se puede consultar el archivo WSDL en la siguiente ruta "http://localhost:8080/ws/userWsdl.wsdl". Tener en 
+cuenta que esta ruta puede variar segun los valores de las configuraciones utilizadas por cada uno.
+
+Con este archivo WSLD se puede utilizar un cliente HTTP para peticiones SOAP como la aplicacion de SoapUI para importar el archivo y probar el 
+funcionamiento del archivo.
