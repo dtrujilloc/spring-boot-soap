@@ -12,6 +12,7 @@ java {
 }
 
 configurations {
+	jaxb //se especifica que se va a utilizar jaxb
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -21,7 +22,23 @@ repositories {
 	mavenCentral()
 }
 
+// se define una variable que contiene la direccion base del proyecto para poder crear las clases automaticamente en este ubicacion
+def generated_dir = "src/main/java"
+sourceSets {
+	generated {
+		java.srcDir "$generated_dir"
+	}
+}
+
 dependencies {
+	// dependencias que permiten la generacion automatica de las clases a partir de xsd
+	jaxb "org.glassfish.jaxb:jaxb-xjc:4.0.1"
+	jaxb "org.glassfish.jaxb:jaxb-runtime:4.0.1"
+	// The next two dependencies are not necessary for generating code, only when running the code:
+	// Generated code depends on the JAXB API, which is removed from base Java in JDK 11, and therefore needs to be added
+	implementation "org.glassfish.jaxb:jaxb-runtime:4.0.1"
+	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0' // In JAXB v3, 'javax.xml.bind' was moved to 'jakarta.xml.bind'
+
 	//dependecia que permite genera el WSLD
 	implementation 'wsdl4j:wsdl4j'
 
@@ -29,6 +46,35 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// Se crea una funcion/metodo que ejecuta la creacion automatica haciendo
+def addXjcTask(taskName, schema, pkg, dest) {
+
+	// Se debe tener creado la direccion donde se guardara o creara las clases automaticamente
+	file(dest).mkdirs()
+
+
+	// The main XJC task, calls XJCFacade which is the entry point of the XJC JAR
+	tasks.create(name: taskName, type: JavaExec) {
+		classpath configurations.jaxb
+		mainClass = 'com.sun.tools.xjc.XJCFacade'
+
+		// To explore available args, download the XJC JAR and run java -jar jaxb-xjc.jar --help
+		args schema, "-p", pkg, "-d", dest, "-no-header"
+	}
+}
+
+// Se especifican los parametros a utilizar en la ejecucion de la tarea
+addXjcTask("gradle-xsd", 						//nombre de la tarea
+		"src/main/resources/soap-api.xsd",		// ruta donde se encuenta el archivo XSD
+		"com.example.soap.api.metadataxsd",		// paquete donde sera guardadas las clases generadas automaticamente
+		"$generated_dir")						// direccion base del paquete donde se guardara las clases generadas automaticamente
+
+// Se registra la tarea que es ejecutara por comando
+tasks.register("generateSourcesXsd") {						// nombre de la tarea que se quiere registrar
+	description "Generate Java sources fram XSD files"
+	dependsOn tasks.getByName("gradle-xsd")					// se realaciona esta tarea con la programada anteriormente para que la ejecute
 }
 
 tasks.named('test') {

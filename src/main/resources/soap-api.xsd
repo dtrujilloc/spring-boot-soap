@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.example.com/soap/api/metadataxsd"
+            xmlns:tns="http://www.example.com/soap/api/metadataxsd"
+            elementFormDefault="qualified">
+
+    <xsd:element name="UserRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="name" type="xsd:string" />
+                <xsd:element name="age" type="xsd:int" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="UserResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="isAdult" type="xsd:boolean" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
