@@ -52,4 +52,4 @@ Una vez realizada dicha configuracion, se puede consultar el archivo WSDL en la 
 cuenta que esta ruta puede variar segun los valores de las configuraciones utilizadas por cada uno.
 
 Con este archivo WSLD se puede utilizar un cliente HTTP para peticiones SOAP como la aplicacion de SoapUI para importar el archivo y probar el 
-funcionamiento del archivo.
+funcionamiento del proyecto.
