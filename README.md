@@ -29,3 +29,5 @@ Datos a tener en cuenta:
 - Notar que el archivo XSD tiene unos datos del namespace, notar que este name space se conforma a partir del nombre de los paquetes donde se desea crear las clases automaticamente.
 - Notar que el name space y la configuracion realizada en el build.gradle tambien deben concordar para poder que hagar match.
 - Existen diversas formas de programar las tareas de generacion de codigo automatico del build.gradle
+
+Para este caso, en el archivo XSD esta la informacion de las clases u objetos que se utilizaran en el request y response.
