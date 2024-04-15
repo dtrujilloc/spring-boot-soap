@@ -31,3 +31,11 @@ Datos a tener en cuenta:
 - Existen diversas formas de programar las tareas de generacion de codigo automatico del build.gradle
 
 Para este caso, en el archivo XSD esta la informacion de las clases u objetos que se utilizaran en el request y response.
+
+# 3. Capa de Service y Endpoint
+Como estamos manejando un proyecto base para conocer los conceptos necesarios para crear un proyecto SOAP, se utiliza una arquitectura por 
+capas. Para este punto se procede a crear las capas de Service y Endpoint, donde se crea un paquete para cada una de las capas y dentro de 
+estos se crean las clases correspondientes, lo importante a resaltar, son las anotaciones que se utilizan en cada una de las clases, ya que 
+esta anotaciones vienen de la dependencia de web services que seleccionamos al crear el proyecto. Una vez creado estas clases, nuestro proyecto 
+ya estaria completo para que pueda funcionar como servidor. Pero quien lo consuma, es decir el cliente, necesitara conocer el WSDL. y para esto 
+es necesario realizar una configuracion adicional para que se genere automaicamente a partir de todas las anotaciones que hemos utilizado.
